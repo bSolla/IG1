@@ -10,6 +10,7 @@ Estrella3D::Estrella3D(GLdouble re, GLdouble np, GLdouble h)
 
 Estrella3D::~Estrella3D()
 {
+	delete mesh; mesh = nullptr;
 }
 
 void Estrella3D::render(Camera const & cam)
