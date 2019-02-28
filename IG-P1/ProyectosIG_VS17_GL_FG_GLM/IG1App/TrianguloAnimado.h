@@ -1,14 +1,7 @@
 #pragma once
 #include "Entity.h"
-class TrianguloAnimado :
-	public Entity
-{
-private:
-	double ang = 90.0;
-	double incrAng = 1.0;
-	double radio = 100.0;
-	double x, y;
 
+class TrianguloAnimado : public Entity {
 public:
 	TrianguloAnimado(GLdouble r);
 	virtual ~TrianguloAnimado();

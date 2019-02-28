@@ -87,6 +87,8 @@ Mesh * Mesh::generaPoliespiral(dvec2 verIni, GLdouble angIni, GLdouble incrAng, 
 
 	return m;
 }
+
+
 Mesh * Mesh::generaDragon(GLuint numVert)
 {
 	srand(time(NULL));
@@ -125,6 +127,8 @@ Mesh * Mesh::generaDragon(GLuint numVert)
 
 	return m;
 }
+
+
 Mesh * Mesh::generaTriangulo(GLdouble r)
 {
 	Mesh* m = new Mesh();
@@ -198,6 +202,54 @@ Mesh * Mesh::generaRectanguloRGB(GLdouble w, GLdouble h)
 	m->colors[3] = dvec4(0.0, 0.0, 1.0, 1.0);
 	//m->colors[4] = dvec4(0.0, 1.0, 0.0, 1.0);
 	//m->colors[5] = dvec4(0.0, 0.0, 1.0, 1.0);
+
+	return m;
+}
+
+Mesh * Mesh::generaEstrella3D(GLdouble re, GLdouble np, GLdouble h)
+{
+	Mesh* m = new Mesh();
+	m->primitive = GL_TRIANGLE_FAN;
+	m->numVertices = 2 * np + 2;
+	m->vertices = new dvec3[m->numVertices];
+
+	int numTriangulos = 2 * np;
+
+	double ang = 360.0;
+	double incrAng = -(ang / numTriangulos);
+
+	m->vertices[0] = dvec3(0.0, 0.0, 0.0);
+
+	for (int i = 1; i < m->numVertices; i++) {
+		if (i % 2 == 0) {
+			m->vertices[i] = dvec3(re*cos(radians(ang)), re* sin(radians(ang)), h);
+		}
+		else {
+			m->vertices[i] = dvec3((re / 2)*cos(radians(ang)), (re / 2)* sin(radians(ang)), h);
+		}
+		ang += incrAng;
+	}
+
+	return m;
+}
+Mesh * Mesh::generaContCubo(GLdouble l)
+{
+	Mesh* m = new Mesh();
+	m->numVertices = 10;
+	m->primitive = GL_TRIANGLE_STRIP;
+
+	m->vertices = new dvec3(m->numVertices);
+
+	m->vertices[0] = dvec3(-l/2, l/2, l/2);
+	m->vertices[1] = dvec3(-l/2, -l/2, l/2);
+	m->vertices[2] = dvec3(l/2, l/2, l/2);
+	m->vertices[3] = dvec3(l/2, -l/2, l/2);
+	m->vertices[4] = dvec3(l/2, l/2, -l/2);
+	m->vertices[5] = dvec3(l/2, -l/2, -l/2);
+	m->vertices[6] = dvec3(-l/2, l/2, -l/2);
+	m->vertices[7] = dvec3(-l/2, -l/2, -l/2);
+	m->vertices[8] = dvec3(-l/2, l/2, l/2);
+	m->vertices[9] = dvec3(-l/2, -l/2, l/2);
 
 	return m;
 }

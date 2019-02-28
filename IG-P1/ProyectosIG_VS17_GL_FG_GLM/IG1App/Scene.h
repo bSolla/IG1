@@ -12,6 +12,7 @@
 #include "TrianguloRGB.h"
 #include "RectanguloRGB.h"
 #include "TrianguloAnimado.h"
+#include "Caja.h"
 //#include "Mesh.h"
 
 #include <vector>
