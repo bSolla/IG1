@@ -53,11 +53,11 @@ void Scene::init()
   // --		  R E C T Á N G U L O  R G B		--
   // ---------------------------------------------
 
-  /*grObjects.push_back(new RectanguloRGB(200, 100));
-  dmat4 m = grObjects.back()->getModelMat();
-  dvec3 v = { 0.0, 0.0, 1.0 };
-  m = rotate(m, radians(25.0), dvec3(v));
-  grObjects.back()->setModelMat(m);*/
+  //grObjects.push_back(new RectanguloRGB(200, 100));
+  //dmat4 m = grObjects.back()->getModelMat();
+  //dvec3 v = { 0.0, 0.0, 1.0 };
+  //m = rotate(m, radians(25.0), dvec3(v));
+  //grObjects.back()->setModelMat(m);
 
 
 
@@ -66,6 +66,36 @@ void Scene::init()
   // ---------------------------------------------
 
   //grObjects.push_back(new TrianguloAnimado(100));
+
+
+
+  // ---------------------------------------------
+  // --			E S C E N A  2 D				--
+  // ---------------------------------------------
+
+  //dmat4 m;
+  //grObjects.push_back (new TrianguloAnimado (85.0)); // ---------------------------------- triángulo animado
+  //grObjects.push_back (new TrianguloRGB (120.0)); // ------------------------------------- triángulo rgb
+  //m = grObjects.back ()->getModelMat ();
+  //m = translate (dmat4 (1), dvec3 { -300.0, 180.0, 0.0 });
+  //m = rotate (m, radians (70.0), dvec3 { 0.0, 0.0, 1.0 });
+  //grObjects.back ()->setModelMat (m);
+  //grObjects.push_back (new Dragon (3500)); //--------------------------------------------- dragón
+  //m = grObjects.back ()->getModelMat ();
+  //m = translate (dmat4 (1), dvec3 { -100.0, -60.0, 0.0 });
+  //m = rotate (m, radians (130.0), dvec3 { 0.0, 0.0, 1.0 });
+  //m = scale (m, dvec3 { 20.0, 20.0, 20.0 });
+  //grObjects.back ()->setModelMat (m);
+  //grObjects.push_back (new RectanguloRGB (250, 150)); // -------------------------------- rectángulo rgb
+  //m = grObjects.back ()->getModelMat ();
+  //m = translate (dmat4 (1), dvec3 { 200.0, 100.0, 0.0 });
+  //m = rotate (m, radians (60.0), dvec3 { 0.0, 0.0, 1.0 });
+  //grObjects.back ()->setModelMat (m);
+  //grObjects.push_back (new Poliespiral (dvec2 { 0.0, 0.0 }, 0, 72.0, 30.0, 2.0, 400)); // poliespiral
+  //m = grObjects.back ()->getModelMat ();
+  //m = translate (dmat4 (1), dvec3 { 50.0, -30.0, 0.0 });
+  //m = rotate (m, radians (-10.0), dvec3 { 0.0, 0.0, 1.0 });
+  //grObjects.back ()->setModelMat (m);
 
 
 
