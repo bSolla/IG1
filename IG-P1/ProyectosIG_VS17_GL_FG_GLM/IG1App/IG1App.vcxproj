@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C72F3A79-DA8E-4EC6-A14F-6C59650E8A7E}</ProjectGuid>
     <RootNamespace>IG1App</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <ProjectName>IG1App</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -126,9 +126,11 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Estrella3D.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Pixmap32RGBA.h" />
     <ClInclude Include="Poliespiral.h" />
     <ClInclude Include="RectanguloRGB.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TrianguloAnimado.h" />
     <ClInclude Include="TrianguloRGB.h" />
     <ClInclude Include="Viewport.h" />
@@ -141,9 +143,11 @@
     <ClCompile Include="Estrella3D.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Pixmap32RGBA.cpp" />
     <ClCompile Include="Poliespiral.cpp" />
     <ClCompile Include="RectanguloRGB.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TrianguloAnimado.cpp" />
     <ClCompile Include="TrianguloRGB.cpp" />
     <ClCompile Include="Viewport.cpp" />

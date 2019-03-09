@@ -11,6 +11,7 @@ void Scene::init()
 { // OpenGL basic setting
   glClearColor(1.0, 1.0, 1.0, 1.0);  // background color (alpha=1 -> opaque)
   glEnable(GL_DEPTH_TEST);  // enable Depth test 
+  glEnable(GL_TEXTURE_2D);
      
   // lights
   // textures  
@@ -18,7 +19,7 @@ void Scene::init()
 
   // Graphics objects (entities) of the scene
   
-  //grObjects.push_back(new EjesRGB(200.0));
+  grObjects.push_back(new EjesRGB(200.0));
 
   // ---------------------------------------------
   // --			P O L I E S P I R A L			--
@@ -103,15 +104,40 @@ void Scene::init()
   // --			E S T R E L L A  3 D			--
   // ---------------------------------------------
 
-  //grObjects.push_back(new Estrella3D(10, 6, 5));
+  //grObjects.push_back(new Estrella3D(100, 6, 150));
 
 
 
   // ---------------------------------------------
   // --				C A J A						--
   // ---------------------------------------------
-  // TODO: FIX
   //grObjects.push_back(new Caja(20));
+
+  // ---------------------------------------------
+  // --			 E S C E N A  3 D   			--
+  // ---------------------------------------------
+  dmat4 m;
+
+  //grObjects.push_back(new Estrella3D(50, 6, 50));
+  //m = grObjects.back()->getModelMat();
+  //m = translate(dmat4(1), dvec3(-100, 200, -100));
+  //grObjects.back()->setModelMat(m);
+
+
+  grObjects.push_back(new Caja(100));
+  /*m = grObjects.back()->getModelMat();
+  m = translate(dmat4(1), dvec3(-100, 50.2, -100));
+  m = rotate(m, radians(90.0), dvec3(0.0, 1.0, 0.0));
+  grObjects.back()->setModelMat(m);*/
+
+  //grObjects.push_back (new RectanguloRGB (500, 500)); // -------------------------------- rectángulo rgb
+  //m = grObjects.back ()->getModelMat ();
+  //m = rotate (m, radians (90.0), dvec3 { 1.0, 0.0, 0.0 });
+  //grObjects.back()->setModelMat(m);
+
+
+//grObjects.push_back(new RectanguloRGB(500, 500));
+//grObjects.push_back(new Estrella3D(100, 6, 150));
 
 
 

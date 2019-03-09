@@ -20,7 +20,12 @@ void Mesh::render()
       glEnableClientState(GL_COLOR_ARRAY);
       glColorPointer(4, GL_DOUBLE, 0, colors);   // number of coordinates per color, type of each coordinate, stride, pointer 
     }
-	
+
+	if (texCoords != nullptr) {
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glTexCoordPointer(2, GL_DOUBLE, 0, texCoords);
+	}
+
     glDrawArrays(primitive, 0, numVertices);   // primitive graphic, first index and number of elements to be rendered
 
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -156,7 +161,6 @@ Mesh * Mesh::generaTriangulo(GLdouble r)
 }
 
 
-
 Mesh * Mesh::generaTrianguloRGB(GLdouble r)
 {
 	Mesh * m = generaTriangulo(r);
@@ -206,6 +210,7 @@ Mesh * Mesh::generaRectanguloRGB(GLdouble w, GLdouble h)
 	return m;
 }
 
+
 Mesh * Mesh::generaEstrella3D(GLdouble re, GLdouble np, GLdouble h)
 {
 	Mesh* m = new Mesh();
@@ -232,14 +237,17 @@ Mesh * Mesh::generaEstrella3D(GLdouble re, GLdouble np, GLdouble h)
 
 	return m;
 }
+
+
 Mesh * Mesh::generaContCubo(GLdouble l)
 {
 	Mesh* m = new Mesh();
 	m->numVertices = 10;
 	m->primitive = GL_TRIANGLE_STRIP;
 
-	m->vertices = new dvec3(m->numVertices);
+	m->vertices = new dvec3[m->numVertices];
 
+	
 	m->vertices[0] = dvec3(-l/2, l/2, l/2);
 	m->vertices[1] = dvec3(-l/2, -l/2, l/2);
 	m->vertices[2] = dvec3(l/2, l/2, l/2);
@@ -250,6 +258,48 @@ Mesh * Mesh::generaContCubo(GLdouble l)
 	m->vertices[7] = dvec3(-l/2, -l/2, -l/2);
 	m->vertices[8] = dvec3(-l/2, l/2, l/2);
 	m->vertices[9] = dvec3(-l/2, -l/2, l/2);
+
+	return m;
+}
+
+
+Mesh * Mesh::generaRectanguloTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh)
+{
+	Mesh* m = generaRectangulo(w, h);
+	m->texCoords = new dvec2[m->numVertices];
+	m->texCoords[0] = dvec2(0, rh);
+	m->texCoords[1] = dvec2(0, 0);
+	m->texCoords[2] = dvec2(rw, rh);
+	m->texCoords[3] = dvec2(rw, 0);
+	return m;
+}
+
+// TODO: ------------------- fill ------------------
+
+Mesh * Mesh::generaEstrellaTexCor(GLdouble r, GLdouble nL, GLdouble h)
+{
+	Mesh* m = generaEstrella3D(r, nL, h);
+	int numTriangulos = 2 * nL;
+
+	return m;
+}
+
+Mesh * Mesh::generaCajaTexCor(GLdouble l)
+{
+	Mesh* m = generaContCubo(l);
+
+	m->texCoords = new dvec2[m->numVertices];
+	m->texCoords[0] = dvec2(0.0, 1.0);
+	m->texCoords[1] = dvec2(0.0, 0.0);
+	m->texCoords[2] = dvec2(1.0, 1.0);
+	m->texCoords[3] = dvec2(1.0, 0.0);
+	m->texCoords[4] = dvec2(0.0, 1.0);
+	m->texCoords[5] = dvec2(0.0, 0.0);
+	m->texCoords[6] = dvec2(1.0, 1.0);
+	m->texCoords[7] = dvec2(1.0, 0.0);
+	m->texCoords[8] = dvec2(0.0, 1.0);
+	m->texCoords[9] = dvec2(0.0, 0.0);
+
 
 	return m;
 }
