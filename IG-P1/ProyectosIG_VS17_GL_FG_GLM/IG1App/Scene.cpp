@@ -118,22 +118,22 @@ void Scene::init()
   // ---------------------------------------------
   dmat4 m;
 
-  //grObjects.push_back(new Estrella3D(50, 6, 50));
-  //m = grObjects.back()->getModelMat();
-  //m = translate(dmat4(1), dvec3(-100, 200, -100));
-  //grObjects.back()->setModelMat(m);
+  grObjects.push_back(new Estrella3D(50, 6, 50));
+  m = grObjects.back()->getModelMat();
+  m = translate(dmat4(1), dvec3(-100, 200, -100));
+  grObjects.back()->setModelMat(m);
 
 
   grObjects.push_back(new Caja(100));
-  /*m = grObjects.back()->getModelMat();
+  m = grObjects.back()->getModelMat();
   m = translate(dmat4(1), dvec3(-100, 50.2, -100));
   m = rotate(m, radians(90.0), dvec3(0.0, 1.0, 0.0));
-  grObjects.back()->setModelMat(m);*/
+  grObjects.back()->setModelMat(m);
 
-  //grObjects.push_back (new RectanguloRGB (500, 500)); // -------------------------------- rectángulo rgb
-  //m = grObjects.back ()->getModelMat ();
-  //m = rotate (m, radians (90.0), dvec3 { 1.0, 0.0, 0.0 });
-  //grObjects.back()->setModelMat(m);
+  grObjects.push_back (new RectanguloRGB (500, 500)); // -------------------------------- rectángulo rgb
+  m = grObjects.back ()->getModelMat ();
+  m = rotate (m, radians (90.0), dvec3 { 1.0, 0.0, 0.0 });
+  grObjects.back()->setModelMat(m);
 
 
 //grObjects.push_back(new RectanguloRGB(500, 500));

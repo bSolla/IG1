@@ -279,7 +279,6 @@ Mesh * Mesh::generaRectanguloTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh
 Mesh * Mesh::generaEstrellaTexCor(GLdouble r, GLdouble nL, GLdouble h)
 {
 	Mesh* m = generaEstrella3D(r, nL, h);
-	int numTriangulos = 2 * nL;
 
 	return m;
 }
