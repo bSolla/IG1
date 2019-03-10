@@ -284,6 +284,7 @@ Mesh * Mesh::generaEstrellaTexCor(GLdouble r, GLdouble nL, GLdouble h)
 	int numTriangulos = 2 * nL;
 	double ang = 360.0;
 	double incrAng = -(ang / numTriangulos);
+	double x, y;
 
 	m->texCoords = new dvec2[m->numVertices];
 
@@ -291,8 +292,8 @@ Mesh * Mesh::generaEstrellaTexCor(GLdouble r, GLdouble nL, GLdouble h)
 	for (int i = 1; i < m->numVertices; i++) {
 		// 0.5 is both the radius of the "circumference" used to get the text. coord., and the offset to the
 		// upper left corner (the zero in the texture coords)
-		double x = 0.5 + (0.5 * cos (radians (ang))); 
-		double y = 0.5 + (0.5 * sin (radians (ang)));
+		x = 0.5 + (0.5 * cos (radians (ang))); 
+		y = 0.5 + (0.5 * sin (radians (ang)));
 		m->texCoords[i] = dvec2(x, y);
 		
 		ang += incrAng;

@@ -6,8 +6,9 @@ class Estrella3D :
 private:
 	Mesh* mirrorMesh = nullptr;   // surface mesh
 	glm::dmat4 modelMatMirror = glm::dmat4(1);    // modeling matrix
+
 	double animationAngle = 0.0;
-	double angleIncrement = 15.0;
+	double angleIncrement = 5.0;
 public:
 	Estrella3D(GLdouble re, GLdouble np, GLdouble h);
 	virtual ~Estrella3D();
