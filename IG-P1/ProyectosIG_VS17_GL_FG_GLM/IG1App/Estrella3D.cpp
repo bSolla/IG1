@@ -11,7 +11,7 @@ Estrella3D::Estrella3D(GLdouble re, GLdouble np, GLdouble h)
 	//mirrorMesh = Mesh::generaEstrella3D(re, np, h);
 	mesh = Mesh::generaEstrellaTexCor(re, np, h);
 	mirrorMesh = Mesh::generaEstrellaTexCor(re, np, h);
-	//texture.load("..\\Bmps\\baldosaP.bmp");
+	texture.load("..\\Bmps\\baldosaP.bmp");
 }
 
 
@@ -23,17 +23,17 @@ Estrella3D::~Estrella3D()
 void Estrella3D::render(Camera const & cam)
 {
 	if (mesh != nullptr) {
-		//texture.bind(GL_REPLACE);
-		/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);*/
+		texture.bind(GL_REPLACE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
 		glm::dmat4 auxMat = modelMat;
 
 		uploadMvM(cam.getViewMat());
-		glColor3d(0.0, 0.0, 1.0);
-		glLineWidth(2);
-		glPolygonMode(GL_BACK, GL_LINE);
-		glPolygonMode(GL_FRONT, GL_LINE);
+		//glColor3d(0.0, 0.0, 1.0);
+		//glLineWidth(2);
+		//glPolygonMode(GL_BACK, GL_LINE);
+		//glPolygonMode(GL_FRONT, GL_LINE);
 
 		mesh->render();
 
@@ -45,8 +45,8 @@ void Estrella3D::render(Camera const & cam)
 
 		modelMat = auxMat;
 
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		//texture.unbind();
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		texture.unbind();
 	}
 }
 

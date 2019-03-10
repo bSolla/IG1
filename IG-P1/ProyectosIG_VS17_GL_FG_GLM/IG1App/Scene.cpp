@@ -11,10 +11,10 @@ void Scene::init()
 { // OpenGL basic setting
   glClearColor(1.0, 1.0, 1.0, 1.0);  // background color (alpha=1 -> opaque)
   glEnable(GL_DEPTH_TEST);  // enable Depth test 
-  glEnable(GL_TEXTURE_2D);
      
   // lights
   // textures  
+    glEnable(GL_TEXTURE_2D);
   // meshes
 
   // Graphics objects (entities) of the scene
@@ -40,6 +40,7 @@ void Scene::init()
   //mDragon = scale(mDragon, vDragon);
   //mDragon = rotate (mDragon, aDragon, dvec3 { 0.0, 0.0, 1.0 });
   //grObjects.back()->setModelMat(mDragon);
+
 
 
   // ---------------------------------------------

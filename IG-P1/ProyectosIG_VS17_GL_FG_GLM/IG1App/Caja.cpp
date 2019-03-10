@@ -20,18 +20,20 @@ Caja::~Caja()
 void Caja::render(Camera const & cam)
 {
 	if (mesh != nullptr) {
-
 		texture.load("..\\Bmps\\container.bmp");
 
 		glm::dmat4 auxMat = modelMat;
 
 		uploadMvM(cam.getViewMat());
+
+		// ---------------------------------------- normal, line only box
 		//glColor3d(0.0, 0.0, 1.0);
 		//glPolygonMode(GL_BACK, GL_LINE);
 		//glPolygonMode(GL_FRONT, GL_LINE);
-		/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);*/
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
+		// ---------------------------------------- textured box
 		glEnable(GL_CULL_FACE);
 		glCullFace(GL_BACK);
 		mesh->render();
