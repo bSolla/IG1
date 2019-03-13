@@ -48,16 +48,22 @@ void Estrella3D::render(Camera const & cam)
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		texture.unbind();
 
-		glm::dmat4 mat = glm::dmat4(1);
-		mat = rotate(mat, glm::radians(angleIncrement/2), glm::dvec3(0.0, 0.0, 1.0));
-		mat = rotate(mat, glm::radians(angleIncrement), glm::dvec3(0.0, 1.0, 0.0));
-		modelMat = modelMat * mat;
 	}
 }
 
 // TODO: ----------- create update in main and in Entity, and perform the rotations there ----------
 
-void Estrella3D::update()
-{
+void Estrella3D::update() {
+	
+		glm::dmat4 mat = glm::dmat4(1);
+		mat = rotate(mat, glm::radians(angleIncrement/2), glm::dvec3(0.0, 0.0, 1.0));
+		mat = rotate(mat, glm::radians(angleIncrement), glm::dvec3(0.0, 1.0, 0.0));
+		modelMat = modelMat * mat;
+}
 
+void Estrella3D::update (GLuint elapsedTime) {
+	glm::dmat4 mat = glm::dmat4(1);
+	mat = rotate(mat, glm::radians(angleIncrement/2), glm::dvec3(0.0, 0.0, 1.0));
+	mat = rotate(mat, glm::radians(angleIncrement), glm::dvec3(0.0, 1.0, 0.0));
+	modelMat = modelMat * mat;
 }

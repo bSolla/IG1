@@ -10,22 +10,22 @@
 #include "Texture.h"
 //-------------------------------------------------------------------------
 
-class Entity 
-{
+class Entity {
 public:
 	Entity() : modelMat(1.0) { }; 
 	virtual ~Entity() { };
 
 	virtual void render(Camera const& cam) = 0;
 	virtual void update() {};
-
+	virtual void update (GLuint timeElapsed) {}
+	
 	// modeling matrix
 	glm::dmat4 const& getModelMat() const { return modelMat; };
 
 	void setModelMat(glm::dmat4 const& aMat) { modelMat = aMat; }
   
-protected:
 
+protected:
 	Mesh* mesh = nullptr;   // surface mesh
 	glm::dmat4 modelMat;    // modeling matrix
 	Texture texture;
@@ -36,8 +36,7 @@ protected:
 
 //-------------------------------------------------------------------------
 
-class EjesRGB : public Entity 
-{
+class EjesRGB : public Entity {
 public:
 	EjesRGB(GLdouble l);
 	~EjesRGB();

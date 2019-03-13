@@ -119,7 +119,7 @@ void Scene::init()
   // ---------------------------------------------
   dmat4 m;
 
-  grObjects.push_back(new Estrella3D(50, 6, 50));
+  grObjects.push_back(new Estrella3D(50, 4, 50));
   m = grObjects.back()->getModelMat();
   m = translate(dmat4(1), dvec3(-100, 200, -100));
   grObjects.back()->setModelMat(m);
@@ -169,6 +169,13 @@ void Scene::update()
 	for (Entity* el : grObjects)
 	{
 		el->update();
+	}
+}
+
+
+void Scene::update (GLuint elapsedTime) {
+	for (Entity* el : grObjects) {
+		el->update(elapsedTime);
 	}
 }
 //-------------------------------------------------------------------------

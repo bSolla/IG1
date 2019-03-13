@@ -29,10 +29,11 @@ public:
 
     void render(Camera const& cam);
 	void update();
-	  
+	void update (GLuint timeElapsed);
+
 protected:
 
-	  std::vector<Entity*> grObjects;  // Entities (graphics objects) of the scene
+	std::vector<Entity*> grObjects;  // Entities (graphics objects) of the scene
 };
 
 //-------------------------------------------------------------------------

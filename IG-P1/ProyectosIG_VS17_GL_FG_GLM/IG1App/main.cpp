@@ -25,12 +25,18 @@ Camera camera(&viewPort);
 // Graphics objects of the scene
 Scene scene;   
 
+// Update management
+GLuint lastTick = 0;
+const GLuint TICKS_BETWEEN_UPDATES = 50;
+bool autoUpdate = false;
+
 //----------- Callbacks ----------------------------------------------------
 
 void display();
 void resize(int newWidth, int newHeight);
 void key(unsigned char key, int x, int y);
 void specialKey(int key, int x, int y);
+void update ();
 
 //-------------------------------------------------------------------------
 
@@ -59,6 +65,7 @@ int main(int argc, char *argv[])
   glutKeyboardFunc(key);
   glutSpecialFunc(specialKey);
   glutDisplayFunc(display);
+  glutIdleFunc (update);
  
   cout << glGetString(GL_VERSION) << '\n';
   cout << glGetString(GL_VENDOR) << '\n';
@@ -116,12 +123,16 @@ void key(unsigned char key, int x, int y)
   case 'o':
 	camera.set2D();
 	break;
-
-	// update ----------------------
+	
+	// manual update ----------------------
   case 'u':
-	  scene.update();
+	  if (!autoUpdate) {
+		  scene.update ();
+	  }
 	  break;
-
+  case 'U':
+	  autoUpdate = !autoUpdate;
+	  break;
   default:
 	need_redisplay = false;
     break;
@@ -157,5 +168,24 @@ void specialKey(int key, int x, int y)
   if (need_redisplay)
     glutPostRedisplay();
 }
+
+
+void update () {
+	if (autoUpdate) {
+		bool need_redisplay = false;
+		GLuint elapsedTime = glutGet (GLUT_ELAPSED_TIME) - lastTick;
+
+		if (elapsedTime > TICKS_BETWEEN_UPDATES) {
+			lastTick = glutGet (GLUT_ELAPSED_TIME);
+			need_redisplay = true;
+			scene.update (elapsedTime);
+		}
+
+		if (need_redisplay) {
+			glutPostRedisplay ();
+		}
+	}
+}
+
 //-------------------------------------------------------------------------
 
