@@ -107,8 +107,6 @@ int main(int argc, char *argv[])
 // TODO: either in display() or in resize(), fix a bug that deforms the right screen's display
 //		when on perspective mode
 
-// TODO: fix a bug that exits perspective mode when resizing window
-
 void display()   // double buffering
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   
@@ -129,7 +127,7 @@ void resize(int newWidth, int newHeight)
 
   viewPort.uploadPos(0, 0);
   viewportAux.uploadPos(newWidth / 2, 0);
-  
+
   // Resize Scene Visible Area 
   camera.uploadSize(viewPort.getW(), viewPort.getH());    // scale unchanged
   cameraAux.uploadSize(viewportAux.getW(), viewportAux.getH());
@@ -176,6 +174,8 @@ void key(unsigned char key, int x, int y)
   case 'p':
 	  camera.orto = !camera.orto;
 	  camera.changePrj();
+	  cameraAux.orto = !cameraAux.orto;
+	  cameraAux.changePrj ();
 	  break;
   default:
 	need_redisplay = false;

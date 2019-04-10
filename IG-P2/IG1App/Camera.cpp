@@ -67,7 +67,8 @@ void Camera::uploadSize(GLdouble aw, GLdouble ah)
 		GLdouble bot = -top;
 		GLdouble right = top * (4 / 3);
 		GLdouble left = -right;
-		projMat = glm::frustum(left*factScale, right*factScale, bot*factScale, top*factScale, nearVal, farVal);
+		dmat4 aux = glm::frustum(left*factScale, right*factScale, bot*factScale, top*factScale, nearVal, farVal);
+		projMat = aux;
 	}
 
 	uploadPM();
