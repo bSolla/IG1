@@ -75,7 +75,8 @@ void Scene::init()
   // --			E S C E N A  2 D				--
   // ---------------------------------------------
 
-  scene2d ();
+  scene2d();
+
 
 
   // ---------------------------------------------
@@ -94,10 +95,9 @@ void Scene::init()
   // ---------------------------------------------
   // --			 E S C E N A  3 D   			--
   // ---------------------------------------------
-  //scene3d ();
+  
+  //scene3d();
 
-//grObjects.push_back(new RectanguloRGB(500, 500));
-//grObjects.push_back(new Estrella3D(100, 6, 150));
 
 
 
@@ -137,73 +137,80 @@ void Scene::update (GLuint elapsedTime) {
 		el->update(elapsedTime);
 	}
 }
+//-------------------------------------------------------------------------
 
-
-void Scene::changeScene (bool its3d) {
-	int size = grObjects.size ();
+void Scene::changeScene(bool its3d) {
+	int size = grObjects.size();
 	for (int i = 0; i < size; ++i) {
 		grObjects.back()->~Entity();
-		grObjects.pop_back ();
+		grObjects.pop_back();
 	}
 
 	if (its3d) {
-		scene3d ();
+		scene3d();
 	}
 	else {
-		scene2d ();
+		scene2d();
 	}
 }
 
-
-
-void Scene::scene2d () {
-  dmat4 m;
-  grObjects.push_back (new TrianguloAnimado (85.0)); // ---------------------------------- triángulo animado
-  grObjects.push_back (new TrianguloRGB (120.0)); // ------------------------------------- triángulo rgb
-  m = grObjects.back ()->getModelMat ();
-  m = translate (dmat4 (1), dvec3 { -300.0, 180.0, 0.0 });
-  m = rotate (m, radians (70.0), dvec3 { 0.0, 0.0, 1.0 });
-  grObjects.back ()->setModelMat (m);
-  grObjects.push_back (new Dragon (3500)); //--------------------------------------------- dragón
-  m = grObjects.back ()->getModelMat ();
-  m = translate (dmat4 (1), dvec3 { -100.0, -60.0, 0.0 });
-  m = rotate (m, radians (130.0), dvec3 { 0.0, 0.0, 1.0 });
-  m = scale (m, dvec3 { 20.0, 20.0, 20.0 });
-  grObjects.back ()->setModelMat (m);
-  grObjects.push_back (new RectanguloRGB (250, 150)); // -------------------------------- rectángulo rgb
-  m = grObjects.back ()->getModelMat ();
-  m = translate (dmat4 (1), dvec3 { 200.0, 100.0, 0.0 });
-  m = rotate (m, radians (60.0), dvec3 { 0.0, 0.0, 1.0 });
-  grObjects.back ()->setModelMat (m);
-  grObjects.push_back (new Poliespiral (dvec2 { 0.0, 0.0 }, 0, 72.0, 30.0, 2.0, 400)); // poliespiral
-  m = grObjects.back ()->getModelMat ();
-  m = translate (dmat4 (1), dvec3 { 50.0, -30.0, 0.0 });
-  m = rotate (m, radians (-10.0), dvec3 { 0.0, 0.0, 1.0 });
-  grObjects.back ()->setModelMat (m);
+void Scene::scene2d() {
+	dmat4 m;
+	grObjects.push_back(new TrianguloAnimado(85.0)); // ---------------------------------- triangulo animado
+	grObjects.push_back(new TrianguloRGB(120.0)); // ------------------------------------- triangulo rgb
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3{ -300.0, 180.0, 0.0 });
+	m = rotate(m, radians(70.0), dvec3{ 0.0, 0.0, 1.0 });
+	grObjects.back()->setModelMat(m);
+	grObjects.push_back(new Dragon(3500)); //--------------------------------------------- dragon
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3{ -100.0, -60.0, 0.0 });
+	m = rotate(m, radians(130.0), dvec3{ 0.0, 0.0, 1.0 });
+	m = scale(m, dvec3{ 20.0, 20.0, 20.0 });
+	grObjects.back()->setModelMat(m);
+	grObjects.push_back(new RectanguloRGB(250, 150)); // -------------------------------- rectangulo rgb
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3{ 200.0, 100.0, 0.0 });
+	m = rotate(m, radians(60.0), dvec3{ 0.0, 0.0, 1.0 });
+	grObjects.back()->setModelMat(m);
+	grObjects.push_back(new Poliespiral(dvec2{ 0.0, 0.0 }, 0, 72.0, 30.0, 2.0, 400)); // poliespiral
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3{ 50.0, -30.0, 0.0 });
+	m = rotate(m, radians(-10.0), dvec3{ 0.0, 0.0, 1.0 });
+	grObjects.back()->setModelMat(m);
 
 }
 
 
 
-void Scene::scene3d () {
-  dmat4 m;
+void Scene::scene3d() {
+	dmat4 m;
 
-  grObjects.push_back(new Estrella3D(50, 4, 50)); // ------------------------------------ estrella
-  m = grObjects.back()->getModelMat();
-  m = translate(dmat4(1), dvec3(-100, 200, -100));
-  grObjects.back()->setModelMat(m);
+	grObjects.push_back(new Estrella3D(50, 4, 50)); // ------------------------------------ Estrella 3D
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3(-100, 200, -100));
+	grObjects.back()->setModelMat(m);
 
 
-  grObjects.push_back(new Caja(100)); // ------------------------------------------------ caja
-  m = grObjects.back()->getModelMat();
-  m = translate(dmat4(1), dvec3(-100, 50.2, -100));
-  m = rotate(m, radians(90.0), dvec3(0.0, 1.0, 0.0));
-  grObjects.back()->setModelMat(m);
+	grObjects.push_back(new Caja(100)); // ------------------------------------------------ Caja
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3(-100, 50.2, -100));
+	m = rotate(m, radians(90.0), dvec3(0.0, 1.0, 0.0));
+	grObjects.back()->setModelMat(m);
 
-  grObjects.push_back (new RectanguloRGB (500, 500)); // -------------------------------- rectángulo rgb
-  m = grObjects.back ()->getModelMat ();
-  m = rotate (m, radians (90.0), dvec3 { 1.0, 0.0, 0.0 });
-  grObjects.back()->setModelMat(m);
+	grObjects.push_back(new RectanguloRGB(500, 500)); // -------------------------------- Rectángulo rgb
+	m = grObjects.back()->getModelMat();
+	m = rotate(m, radians(90.0), dvec3{ 1.0, 0.0, 0.0 });
+	grObjects.back()->setModelMat(m);
+
+	grObjects.push_back(new Foto(80, 40)); // --------------------------------------------- Foto
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3(0.0, 1, 0.0));
+	m = rotate(m, radians(90.0), dvec3{ 1.0, 0.0, 0.0 });
+	grObjects.back()->setModelMat(m);
+
+	grObjects.push_back(new Cristalera(500)); // ------------------------------------------ Cristalera
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3(0, 250, 0));
+	grObjects.back()->setModelMat(m);
 }
-//-------------------------------------------------------------------------
-

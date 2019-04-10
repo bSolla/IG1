@@ -31,7 +31,10 @@ const GLuint TICKS_BETWEEN_UPDATES = 50;
 bool autoUpdate = false;
 
 // Scene change
-bool its3d = false;
+bool its3D = false;
+
+// screenShot
+Texture screenShot;
 
 //----------- Callbacks ----------------------------------------------------
 
@@ -133,14 +136,15 @@ void key(unsigned char key, int x, int y)
 		  scene.update ();
 	  }
 	  break;
-	// auto update switch -----------------
   case 'U':
 	  autoUpdate = !autoUpdate;
 	  break;
-	// scene change -----------------------
   case '3':
-	  its3d = !its3d;
-	  scene.changeScene (its3d);
+	  its3D = !its3D;
+	  scene.changeScene(its3D);
+	  break;
+  case 'F':
+	  screenShot.save("Screenshot");
 	  break;
   default:
 	need_redisplay = false;

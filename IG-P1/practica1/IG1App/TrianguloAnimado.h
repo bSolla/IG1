@@ -12,5 +12,6 @@ public:
 	virtual ~TrianguloAnimado();
 	virtual void render(Camera const& cam);
 	virtual void update();
+	virtual void update(GLuint elapsedTime);
 };
 

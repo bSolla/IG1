@@ -14,6 +14,8 @@
 #include "TrianguloAnimado.h"
 #include "Caja.h"
 #include "Estrella3D.h"
+#include "Cristalera.h"
+#include "Foto.h"
 //#include "Mesh.h"
 
 #include <vector>
@@ -23,6 +25,7 @@
 class Scene	
 { 
 public:
+
     Scene() { };
 	~Scene();
     void init(); 
@@ -31,14 +34,15 @@ public:
 	void update();
 	void update (GLuint timeElapsed);
 
-	void changeScene (bool isIt3d);
+	void changeScene(bool its3D);
+
 protected:
 
 	std::vector<Entity*> grObjects;  // Entities (graphics objects) of the scene
-	
+
 private:
-	void scene2d ();
-	void scene3d ();
+	void scene2d();
+	void scene3d();
 };
 
 //-------------------------------------------------------------------------

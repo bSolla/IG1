@@ -13,9 +13,8 @@ Caja::Caja(GLdouble l)
 
 Caja::~Caja()
 {
+	delete mesh; mesh = nullptr;
 }
-
-// TODO: ---------------- clean ------------------
 
 void Caja::render(Camera const & cam)
 {

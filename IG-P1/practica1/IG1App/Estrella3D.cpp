@@ -9,6 +9,7 @@ Estrella3D::Estrella3D(GLdouble re, GLdouble np, GLdouble h)
 {
 	//mesh = Mesh::generaEstrella3D(re, np, h);
 	//mirrorMesh = Mesh::generaEstrella3D(re, np, h);
+
 	mesh = Mesh::generaEstrellaTexCor(re, np, h);
 	mirrorMesh = Mesh::generaEstrellaTexCor(re, np, h);
 	texture.load("..\\Bmps\\baldosaP.bmp");
@@ -30,6 +31,7 @@ void Estrella3D::render(Camera const & cam)
 		glm::dmat4 auxMat = modelMat;
 
 		uploadMvM(cam.getViewMat());
+
 		//glColor3d(0.0, 0.0, 1.0);
 		//glLineWidth(2);
 		//glPolygonMode(GL_BACK, GL_LINE);
@@ -46,12 +48,11 @@ void Estrella3D::render(Camera const & cam)
 		modelMat = auxMat;
 
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
 		texture.unbind();
 
 	}
 }
-
-// TODO: ----------- create update in main and in Entity, and perform the rotations there ----------
 
 void Estrella3D::update() {
 	
