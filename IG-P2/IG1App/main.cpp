@@ -104,6 +104,11 @@ int main(int argc, char *argv[])
 }
 //-------------------------------------------------------------------------
 
+// TODO: either in display() or in resize(), fix a bug that deforms the right screen's display
+//		when on perspective mode
+
+// TODO: fix a bug that exits perspective mode when resizing window
+
 void display()   // double buffering
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   
