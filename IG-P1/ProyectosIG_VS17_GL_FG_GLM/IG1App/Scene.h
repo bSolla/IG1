@@ -31,9 +31,14 @@ public:
 	void update();
 	void update (GLuint timeElapsed);
 
+	void changeScene (bool isIt3d);
 protected:
 
 	std::vector<Entity*> grObjects;  // Entities (graphics objects) of the scene
+	
+private:
+	void scene2d ();
+	void scene3d ();
 };
 
 //-------------------------------------------------------------------------

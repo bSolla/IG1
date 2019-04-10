@@ -30,6 +30,9 @@ GLuint lastTick = 0;
 const GLuint TICKS_BETWEEN_UPDATES = 50;
 bool autoUpdate = false;
 
+// Scene change
+bool its3d = false;
+
 //----------- Callbacks ----------------------------------------------------
 
 void display();
@@ -130,8 +133,14 @@ void key(unsigned char key, int x, int y)
 		  scene.update ();
 	  }
 	  break;
+	// auto update switch -----------------
   case 'U':
 	  autoUpdate = !autoUpdate;
+	  break;
+	// scene change -----------------------
+  case '3':
+	  its3d = !its3d;
+	  scene.changeScene (its3d);
 	  break;
   default:
 	need_redisplay = false;
