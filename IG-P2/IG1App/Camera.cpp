@@ -63,11 +63,8 @@ void Camera::uploadSize(GLdouble aw, GLdouble ah)
 		projMat = ortho(xLeft*factScale, xRight*factScale, yBot*factScale, yTop*factScale, nearVal, farVal);
 	}
 	else {
-		GLdouble top = nearVal * tan(90 / 2.0);
-		GLdouble bot = -top;
-		GLdouble right = top * (4 / 3);
-		GLdouble left = -right;
-		dmat4 aux = glm::frustum(left*factScale, right*factScale, bot*factScale, top*factScale, nearVal, farVal);
+		nearVal = yTop / tan (90 / 2);
+		dmat4 aux = glm::frustum(xLeft*factScale, xRight*factScale, yBot*factScale, yTop*factScale, nearVal, farVal);
 		projMat = aux;
 	}
 
@@ -84,11 +81,8 @@ void Camera::uploadScale(GLdouble s)
 		projMat = ortho(xLeft*factScale, xRight*factScale, yBot*factScale, yTop*factScale, nearVal, farVal);
 	}
 	else {
-		GLdouble top = nearVal * tan(90 / 2.0);
-		GLdouble bot = -top;
-		GLdouble right = top * (4 / 3);
-		GLdouble left = -right;
-		projMat = glm::frustum(left*factScale, right*factScale, bot*factScale, top*factScale, nearVal, farVal);
+		nearVal = yTop / tan (90 / 2);
+		projMat = glm::frustum(xLeft*factScale, xRight*factScale, yBot*factScale, yTop*factScale, nearVal, farVal);
 	}
 
 	uploadPM();
@@ -148,18 +142,13 @@ void Camera::setCameraTopView()
 
 void Camera::changePrj()
 {
-	if (orto)
-	{
+	if (orto) {
 		projMat = glm::ortho(xLeft, xRight, yBot, yTop, nearVal, farVal);
 	}
 
-	else
-	{
-		GLdouble top = nearVal * tan(90 / 2.0);
-		GLdouble bot = -top;
-		GLdouble right = top * (4 / 3);
-		GLdouble left = -right;
-		projMat = glm::frustum(left, right, bot, top, nearVal, farVal);
+	else {
+		nearVal = yTop / tan (90 / 2);
+		projMat = glm::frustum(xLeft, xRight, yBot, yTop, nearVal, farVal);
 	}
 
 	uploadPM();
