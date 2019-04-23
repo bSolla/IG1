@@ -15,12 +15,16 @@ void Scene::init()
   // lights
   // textures  
     glEnable(GL_TEXTURE_2D);
+	for (uint i = 0; i < 3; ++i) {
+		textArray[i] = new Texture;
+	}
+	textArray[0]->load ("..\\Bmps\\sun.bmp");
+	textArray[1]->load ("..\\Bmps\\mars.bmp");
+	textArray[2]->load ("..\\Bmps\\moon.bmp");
   // meshes
 
   // Graphics objects (entities) of the scene
   
-  grObjects.push_back(new EjesRGB(200.0));
-
   // ---------------------------------------------
   // --			P O L I E S P I R A L			--
   // ---------------------------------------------
@@ -75,7 +79,7 @@ void Scene::init()
   // --			E S C E N A  2 D				--
   // ---------------------------------------------
 
-  scene2d();
+  //scene2d();
 
 
 
@@ -92,6 +96,8 @@ void Scene::init()
   // ---------------------------------------------
   //grObjects.push_back(new Caja(20));
 
+
+
   // ---------------------------------------------
   // --			 E S C E N A  3 D   			--
   // ---------------------------------------------
@@ -100,13 +106,18 @@ void Scene::init()
 
 
 
-
+  // ---------------------------------------------
+  // --			E S C E N A  Q U A D   			--
+  // ---------------------------------------------
+	sceneQuad ();
 }
 //-------------------------------------------------------------------------
 
 Scene::~Scene()
 { // free memory and resources   
-  
+  for (uint i = 0; i < 3; ++i) {
+	  delete textArray[i]; textArray[i] = nullptr;
+  }
   for (Entity* el: grObjects)
   {
 	  delete el;  el = nullptr;
@@ -159,6 +170,7 @@ void Scene::changeScene(bool its3d) {
 
 void Scene::scene2d() {
 	dmat4 m;
+	grObjects.push_back(new EjesRGB(200.0)); // ------------------------------------------ ejes RGB
 	grObjects.push_back(new TrianguloAnimado(85.0)); // ---------------------------------- triangulo animado
 	grObjects.push_back(new TrianguloRGB(120.0)); // ------------------------------------- triangulo rgb
 	m = grObjects.back()->getModelMat();
@@ -215,5 +227,37 @@ void Scene::scene3d() {
 	grObjects.push_back(new Cristalera(500)); // ------------------------------------------ Cristalera
 	m = grObjects.back()->getModelMat();
 	m = translate(dmat4(1), dvec3(0, 250, 0));
+	grObjects.back()->setModelMat(m);
+}
+
+void Scene::sceneQuad () {
+	glEnable (GL_CULL_FACE);
+	glDisable(GL_BLEND);
+
+	dmat4 m;
+
+	grObjects.push_back(new EjesRGB(200.0)); // ----------------------------------------- ejes RGB
+	
+	grObjects.push_back(new RectanguloRGB(500, 500)); // -------------------------------- Rectángulo rgb
+	m = grObjects.back()->getModelMat();
+	m = rotate(m, radians(90.0), dvec3{ 1.0, 0.0, 0.0 });
+	grObjects.back()->setModelMat(m);
+
+	grObjects.push_back (new Esfera (75));
+	static_cast<Esfera*>(grObjects.back ())->setTexture (textArray[0]);
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3(0, 200, 0));
+	grObjects.back()->setModelMat(m);
+
+	grObjects.push_back (new Esfera (20));
+	static_cast<Esfera*>(grObjects.back ())->setTexture (textArray[1]);
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3(150, 80, 200));
+	grObjects.back()->setModelMat(m);
+
+	grObjects.push_back (new Esfera (10));
+	static_cast<Esfera*>(grObjects.back ())->setTexture (textArray[2]);
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3(-100, 50, 100));
 	grObjects.back()->setModelMat(m);
 }

@@ -104,8 +104,6 @@ int main(int argc, char *argv[])
 }
 //-------------------------------------------------------------------------
 
-// TODO: either in display() or in resize(), fix a bug that deforms the right screen's display
-//		when on perspective mode
 
 void display()   // double buffering
 {

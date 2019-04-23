@@ -16,7 +16,7 @@
 #include "Estrella3D.h"
 #include "Cristalera.h"
 #include "Foto.h"
-//#include "Mesh.h"
+#include "Esfera.h"
 
 #include <vector>
 
@@ -43,6 +43,10 @@ protected:
 private:
 	void scene2d();
 	void scene3d();
+	void sceneQuad ();
+
+	Texture* textArray[3];
+	//Texture textArray[3];
 };
 
 //-------------------------------------------------------------------------
