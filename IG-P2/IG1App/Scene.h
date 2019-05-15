@@ -21,6 +21,7 @@
 #include "PosLight.h"
 #include "SpotLight.h"
 #include "EsferaLuz.h"
+#include "Superficie.h"
 
 #include <vector>
 
@@ -58,7 +59,7 @@ private:
 	void scene3d();
 	void sceneQuad ();
 
-	Texture* textArray[5];
+	Texture* textArray[6];
 	//Texture textArray[3];
 };
 

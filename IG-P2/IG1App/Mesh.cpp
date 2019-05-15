@@ -26,10 +26,15 @@ void Mesh::render()
 		glTexCoordPointer(2, GL_DOUBLE, 0, texCoords);
 	}
 
+	if (normals != nullptr) {
+		glEnableClientState(GL_NORMAL_ARRAY);
+		glNormalPointer(GL_DOUBLE, 0, normals);
+	}
     glDrawArrays(primitive, 0, numVertices);   // primitive graphic, first index and number of elements to be rendered
 
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
   }
 }
 //-------------------------------------------------------------------------
@@ -187,8 +192,6 @@ Mesh * Mesh::generaRectangulo(GLdouble w, GLdouble h)
 	m->vertices[1] = dvec3(w/2, h/2, 0.0);
 	m->vertices[2] = dvec3(-w/2, -h/2, 0.0); 
 	m->vertices[3] = dvec3(w/2, -h/2, 0.0);
-	//m->vertices[4] = dvec3(0.0, h, 0.0);
-	//m->vertices[5] = dvec3(w, h, 0.0);
 
 	return m;
 }

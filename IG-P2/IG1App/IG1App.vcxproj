@@ -131,6 +131,7 @@
     <ClInclude Include="EsferaLuz.h" />
     <ClInclude Include="Estrella3D.h" />
     <ClInclude Include="Foto.h" />
+    <ClInclude Include="IndexMesh.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="RectanguloRGB.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="Superficie.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TrianguloAnimado.h" />
     <ClInclude Include="TrianguloRGB.h" />
@@ -157,6 +159,7 @@
     <ClCompile Include="EsferaLuz.cpp" />
     <ClCompile Include="Estrella3D.cpp" />
     <ClCompile Include="Foto.cpp" />
+    <ClCompile Include="IndexMesh.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -167,6 +170,7 @@
     <ClCompile Include="RectanguloRGB.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="Superficie.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TrianguloAnimado.cpp" />
     <ClCompile Include="TrianguloRGB.cpp" />

@@ -26,7 +26,7 @@ void Scene::init()
 
   // textures  
     glEnable(GL_TEXTURE_2D);
-	for (uint i = 0; i < 5; ++i) {
+	for (uint i = 0; i < 6; ++i) {
 		textArray[i] = new Texture;
 	}
 	textArray[0]->load ("..\\Bmps\\sun.bmp");
@@ -34,6 +34,7 @@ void Scene::init()
 	textArray[2]->load ("..\\Bmps\\moon.bmp");
 	textArray[3]->load("..\\Bmps\\earth.bmp");
 	textArray[4]->load("..\\Bmps\\lego.bmp");
+	textArray[5]->load("..\\Bmps\\terrenoG.bmp");
   // meshes
 
   // Graphics objects (entities) of the scene
@@ -314,4 +315,9 @@ void Scene::sceneQuad () {
 	esferaLuz->setMaterial(MaterialList::pewter);
 	esferaLuz->setTexture(textArray[4]);
 	grObjects.push_back(esferaLuz);
+
+	Superficie* superficie = new Superficie(100, 4, 90);
+	superficie->setTexture(textArray[5]);
+	superficie->setMaterial(MaterialList::brass);
+	grObjects.push_back(superficie);
 }
