@@ -2,12 +2,20 @@
 #include <GL/freeglut.h>
 #include <glm.hpp>
 
+enum MaterialList {
+	blackPlastic,
+	brass,
+	gold,
+	pewter
+};
+
 class Material {
 public:
 	Material ();
 	~Material ();
 
 	virtual void upload ();
+
 	void setBlackPlastic ();
 	void setBrass ();
 	void setGold ();

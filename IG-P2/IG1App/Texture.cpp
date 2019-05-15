@@ -16,6 +16,13 @@ void Texture::bind(GLint mode) { // modo para la mezcla los colores
 	// modos: GL_REPLACE, GL_MODULATE, GL_ADD …
 }
 
+void Texture::bind(GLint mode, bool light)
+{
+	glBindTexture(GL_TEXTURE_2D, id); // activa la textura
+	// la función de mezcla de colores no queda guardada en el objeto
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+}
+
 void Texture::save(const std::string & BMP_Name)
 {
 	glReadBuffer(GL_FRONT);

@@ -42,6 +42,11 @@ Texture screenShot;
 glm::dvec2 mCoord;
 int mBot;
 
+// Lightning bools
+bool camLightEnabled = true;
+bool dirLightEnabled = true;
+bool sphereLightEnabled = true;
+
 //----------- Callbacks ----------------------------------------------------
 
 void display();
@@ -174,6 +179,18 @@ void key(unsigned char key, int x, int y)
 	  camera.changePrj();
 	  cameraAux.orto = !cameraAux.orto;
 	  cameraAux.changePrj ();
+	  break;
+  case 'b':
+	  sphereLightEnabled = !sphereLightEnabled;
+	  scene.enableSphereLight(sphereLightEnabled);
+	  break;
+  case 'c':
+	  camLightEnabled = !camLightEnabled;
+	  scene.enableCamLight(camLightEnabled);
+	  break;
+  case 'v':
+	  dirLightEnabled = !dirLightEnabled;
+	  scene.enableDirLight(dirLightEnabled);
 	  break;
   default:
 	need_redisplay = false;

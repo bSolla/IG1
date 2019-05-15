@@ -17,6 +17,10 @@
 #include "Cristalera.h"
 #include "Foto.h"
 #include "Esfera.h"
+#include "DirLight.h"
+#include "PosLight.h"
+#include "SpotLight.h"
+#include "EsferaLuz.h"
 
 #include <vector>
 
@@ -36,16 +40,25 @@ public:
 
 	void changeScene(bool its3D);
 
+	void enableCamLight(bool enable);
+	void enableDirLight(bool enable);
+	void enableSphereLight(bool enable) { esferaLuz->enableLight(enable); };
+
+
 protected:
 
 	std::vector<Entity*> grObjects;  // Entities (graphics objects) of the scene
+	DirLight * dirLight;
+	SpotLight * camLight;
+	EsferaLuz * esferaLuz;
+
 
 private:
 	void scene2d();
 	void scene3d();
 	void sceneQuad ();
 
-	Texture* textArray[3];
+	Texture* textArray[5];
 	//Texture textArray[3];
 };
 

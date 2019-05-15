@@ -12,7 +12,9 @@ Esfera::~Esfera () {
 
 void Esfera::render (Camera const & cam) {
 	if (qObj != nullptr) {
-		texture->bind(GL_REPLACE);
+		material.upload();
+		texture->bind(GL_MODULATE, true);
+
 		uploadMvM(cam.getViewMat());
 
 		gluQuadricDrawStyle (qObj, GLU_FILL);

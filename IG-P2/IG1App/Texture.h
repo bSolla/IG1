@@ -10,6 +10,7 @@ public:
 	void load(const std::string & BMP_Name, GLubyte alpha = 255);
 	// cargar y transferir a GPU
 	void bind(GLint mode = GL_REPLACE); // para mezcla de colores
+	void bind(GLint mode, bool light);
 	void unbind() { glBindTexture(GL_TEXTURE_2D, 0); };
 	void save(const std::string & BMP_Name);
 protected:

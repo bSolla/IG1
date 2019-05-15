@@ -1,6 +1,7 @@
 #include "Material.h"
 
-
+#include <gtc/matrix_transform.hpp>  
+#include <gtc/type_ptr.hpp>
 
 Material::Material () {
 	setBlackPlastic (); // default material
@@ -11,6 +12,12 @@ Material::~Material () {
 }
 
 void Material::upload () {
+	glShadeModel(sh);
+	glMaterialfv(face, GL_AMBIENT, value_ptr(ambient));
+	glMaterialfv(face, GL_DIFFUSE, value_ptr(diffuse));
+	glMaterialfv(face, GL_SPECULAR, value_ptr(specular));
+	glMaterialf(face, GL_SHININESS, expF);
+
 }
 
 

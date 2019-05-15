@@ -47,6 +47,8 @@ protected:
 	glm::dvec3* vertices = nullptr;  // vertex array
 	glm::dvec4* colors = nullptr;    // color array
 	glm::dvec2* texCoords = nullptr;          // texture coords array
+
+	glm::dvec3* normals = nullptr;
 };
 
 //-------------------------------------------------------------------------

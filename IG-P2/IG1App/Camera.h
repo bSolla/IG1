@@ -53,6 +53,9 @@ public:
 	bool orto = true;
 	void changePrj();
 	
+	glm::fvec3 getCamPos() const { return glm::fvec3(eye.x, eye.y, eye.z); }
+	glm::fvec4 getCamDir() const { return glm::fvec4(look.x, look.y, look.z, 0); }
+
 protected:
 	
 	glm::dmat4 viewMat;    // view matrix = inverse of modeling matrix

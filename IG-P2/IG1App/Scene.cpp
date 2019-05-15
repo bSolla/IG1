@@ -9,18 +9,31 @@ using namespace glm;
 
 void Scene::init()
 { // OpenGL basic setting
-  glClearColor(1.0, 1.0, 1.0, 1.0);  // background color (alpha=1 -> opaque)
+  glClearColor(0.2, 0.2, 0.2, 1.0);  // background color (alpha=1 -> opaque)
   glEnable(GL_DEPTH_TEST);  // enable Depth test 
      
   // lights
+  glEnable(GL_LIGHTING);
+  glEnable(GL_NORMALIZE);
+  dirLight = new DirLight();
+  dirLight->setDir(fvec3(0, -0.25, -1));
+  dirLight->enable();
+
+  camLight = new SpotLight();
+  camLight->setPos(fvec3(0.0, 0.0, 0.0));
+  camLight->setDir(fvec4(0.0, 0.0, -1.0, 0.0));
+  camLight->enable();
+
   // textures  
     glEnable(GL_TEXTURE_2D);
-	for (uint i = 0; i < 3; ++i) {
+	for (uint i = 0; i < 5; ++i) {
 		textArray[i] = new Texture;
 	}
 	textArray[0]->load ("..\\Bmps\\sun.bmp");
 	textArray[1]->load ("..\\Bmps\\mars.bmp");
 	textArray[2]->load ("..\\Bmps\\moon.bmp");
+	textArray[3]->load("..\\Bmps\\earth.bmp");
+	textArray[4]->load("..\\Bmps\\lego.bmp");
   // meshes
 
   // Graphics objects (entities) of the scene
@@ -128,8 +141,13 @@ Scene::~Scene()
 void Scene::render(Camera const& cam)
 {
 	cam.getVP()->upload();
-	//cam.uploadPM();
-
+	//glm::fvec4 camDir = cam.getCamDir();
+	//glm::fvec3 camPos = cam.getCamPos();
+	//camLight->setPos(camPos);
+	//camLight->setDir(camDir);
+	camLight->upload(glm::dmat4(1.0)); // si ponemos que use la viewMat de cam, no funciona correctamente cuando se cambia el eye de la cam (consejo de Antonio)
+	
+	dirLight->upload(cam.getViewMat());
 	for (Entity* el: grObjects)
 	{
 		el->render(cam);
@@ -166,6 +184,24 @@ void Scene::changeScene(bool its3d) {
 	else {
 		scene2d();
 	}
+}
+
+void Scene::enableCamLight(bool enable)
+{
+	if (enable) {
+		camLight->enable();
+	}
+	else
+		camLight->disable();
+}
+
+void Scene::enableDirLight(bool enable)
+{
+	if (enable) {
+		dirLight->enable();
+	}
+	else
+		dirLight->disable();
 }
 
 void Scene::scene2d() {
@@ -238,26 +274,44 @@ void Scene::sceneQuad () {
 
 	grObjects.push_back(new EjesRGB(200.0)); // ----------------------------------------- ejes RGB
 	
-	grObjects.push_back(new RectanguloRGB(500, 500)); // -------------------------------- Rectángulo rgb
-	m = grObjects.back()->getModelMat();
-	m = rotate(m, radians(90.0), dvec3{ 1.0, 0.0, 0.0 });
-	grObjects.back()->setModelMat(m);
+	//grObjects.push_back(new RectanguloRGB(500, 500)); // -------------------------------- Rectángulo rgb
+	//m = grObjects.back()->getModelMat();
+	//m = rotate(m, radians(90.0), dvec3{ 1.0, 0.0, 0.0 });
+	//grObjects.back()->setModelMat(m);
 
-	grObjects.push_back (new Esfera (75));
+	/*grObjects.push_back (new Esfera (75));
+	static_cast<Esfera*>(grObjects.back())->setMaterial(MaterialList::gold);
 	static_cast<Esfera*>(grObjects.back ())->setTexture (textArray[0]);
 	m = grObjects.back()->getModelMat();
 	m = translate(dmat4(1), dvec3(0, 200, 0));
-	grObjects.back()->setModelMat(m);
+	grObjects.back()->setModelMat(m);*/
 
 	grObjects.push_back (new Esfera (20));
 	static_cast<Esfera*>(grObjects.back ())->setTexture (textArray[1]);
+	static_cast<Esfera*>(grObjects.back())->setMaterial(MaterialList::brass);
 	m = grObjects.back()->getModelMat();
 	m = translate(dmat4(1), dvec3(150, 80, 200));
 	grObjects.back()->setModelMat(m);
 
 	grObjects.push_back (new Esfera (10));
 	static_cast<Esfera*>(grObjects.back ())->setTexture (textArray[2]);
+	static_cast<Esfera*>(grObjects.back())->setMaterial(MaterialList::pewter);
 	m = grObjects.back()->getModelMat();
 	m = translate(dmat4(1), dvec3(-100, 50, 100));
 	grObjects.back()->setModelMat(m);
+
+	grObjects.push_back(new Esfera(300));
+	static_cast<Esfera*>(grObjects.back())->setTexture(textArray[3]);
+	static_cast<Esfera*>(grObjects.back())->setMaterial(MaterialList::pewter);
+	m = grObjects.back()->getModelMat();
+	m = translate(dmat4(1), dvec3(0, -350, 0));
+	grObjects.back()->setModelMat(m);
+
+	esferaLuz = new EsferaLuz(50);
+	m = esferaLuz->getModelMat();
+	m = translate(dmat4(1), dvec3(0, 100, 0));
+	esferaLuz->setModelMat(m);
+	esferaLuz->setMaterial(MaterialList::pewter);
+	esferaLuz->setTexture(textArray[4]);
+	grObjects.push_back(esferaLuz);
 }
